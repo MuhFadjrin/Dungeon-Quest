@@ -5,6 +5,9 @@
  */
 package dungeonquest;
 
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author Hamba Allah
@@ -14,8 +17,12 @@ public class Inventory extends javax.swing.JFrame {
     /**
      * Creates new form Inventory
      */
+    Main m = new Main();
+    Kota k=  new Kota();
     public Inventory() {
         initComponents();
+        setTabel();
+        setEquip();
         this.setLocationRelativeTo(null);
     }
 
@@ -41,8 +48,7 @@ public class Inventory extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"HP Potion",  new Integer(5)},
-                {"Slime Gel",  new Integer(10)}
+
             },
             new String [] {
                 "Nama Item", "Jumlah"
@@ -78,14 +84,29 @@ public class Inventory extends javax.swing.JFrame {
         });
 
         jButton2.setText("Heal");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Armor 1", "Armor 2", "Armor 3", "Armor 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Novice Armor" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Weapon 1", "Weapon 2", "Weapon 3", "Weapon 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Wooden Sword" }));
 
         jButton3.setText("Pilih");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Pilih");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,7 +124,7 @@ public class Inventory extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton4)
@@ -138,10 +159,98 @@ public class Inventory extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        new Kota().setVisible(true);
+        //new Kota().setVisible(true);
+        k.ivn=0;
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(m.iInventory[0]<1){
+            JOptionPane.showMessageDialog(null, "Anda tidak memiliki HP Potion", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }else if(m.player[1]==m.health[m.player[0]-1]){
+            JOptionPane.showMessageDialog(null, "Health Sudah Full", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }else{
+            m.player[1] = m.player[1] + 25;
+            m.iInventory[0]--;
+            if(m.player[1]>m.health[m.player[0]-1]){
+                m.player[1] = m.health[m.player[0]-1];
+            }
+            setTabel();
+            System.out.println(m.player[1]);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        System.out.println(jComboBox1.getSelectedItem());
+        if(jComboBox1.getSelectedItem() == "Novice Armor"){
+            m.player[6] = 0;
+            System.out.println(m.player[4] + m.armor[m.player[6]][1]);
+        }else if(jComboBox1.getSelectedItem() == "Leather Armor"){
+            m.player[6] = 1;
+            System.out.println(m.player[4] + m.armor[m.player[6]][1]);
+        }else{
+            m.player[6] = 2;
+            System.out.println(m.player[4] + m.armor[m.player[6]][1]);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        System.out.println(jComboBox2.getSelectedItem());
+        if(jComboBox2.getSelectedItem() == "Wooden Sword"){
+            m.player[5] = 0;
+            System.out.println(m.player[3] + m.weapon[m.player[5]][0]);
+        }else if(jComboBox2.getSelectedItem() == "Dagger"){
+            m.player[5] = 1;
+            System.out.println(m.player[3] + m.weapon[m.player[5]][0]);
+        }else{
+            m.player[5] = 2;
+            System.out.println(m.player[3] + m.weapon[m.player[5]][0]);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+    
+    public void setEquip(){
+        if(m.iEquipment[1][1]==1){
+            jComboBox1.addItem("Leather Armor");
+        }
+        if(m.iEquipment[1][2]==1){
+            jComboBox1.addItem("Iron Armor");
+        }
+        if(m.iEquipment[0][1]==1){
+            jComboBox2.addItem("Dagger");
+        }
+        if(m.iEquipment[0][2]==1){
+            jComboBox2.addItem("Iron Sword");
+        }
+    }
+    
+    public void setTabel(){
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"HP Potion",  m.iInventory[0]},
+                {"Slime Gel",  m.iInventory[1]},
+                {"Goblin Bone", m.iInventory[2]},
+                {"Wolf Bone",  m.iInventory[3]},
+            },
+            new String [] {
+                "Nama Item", "Jumlah"
+            }
+        ){
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+    }
     /**
      * @param args the command line arguments
      */

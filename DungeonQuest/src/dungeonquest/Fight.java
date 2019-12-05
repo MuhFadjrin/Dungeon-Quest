@@ -5,6 +5,8 @@
  */
 package dungeonquest;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hamba Allah
@@ -14,9 +16,78 @@ public class Fight extends javax.swing.JFrame {
     /**
      * Creates new form Fight
      */
+    Main m = new Main();
+    Kota k = new Kota();
+    LinkedList lk = new LinkedList();
+    
+    public static int idM;
+    int eHP;
+    int pATK;
+    int pDEF;
+    int mATK;
+    int mDEF;
+    int mDMG;
+    int pDMG;
+    int loot;
+
     public Fight() {
         initComponents();
+        getMonster();
+        //idM=m.var[2];
+        //this.eHP = m.monster[idM][0];
+        jLabel3.setVisible(false);
+        jLabel4.setVisible(false);
+        setMonster();
         this.setLocationRelativeTo(null);
+    }
+    
+    public void getMonster(){
+        lk.push(new LinkedListNode(m.monster[m.var[2]][0],m.var[2]));
+        this.idM = lk.head.idx;
+        this.eHP = lk.head.HP;
+        System.out.println(lk.head.idx);
+    }
+    
+    public void delAllMonster(){
+        while(lk.head != null){
+            lk.qpop();
+        }
+        lk.qpop();
+    }
+    
+    public void setMonster() {
+        System.out.println(idM);
+        System.out.println(m.monsterName[idM]);
+        this.pATK = m.player[3] + m.weapon[m.player[5]][0];
+        this.pDEF = m.player[4] + m.armor[m.player[6]][1];
+        this.mATK = m.monster[idM][1];
+        this.mDEF = m.monster[idM][2];
+        this.mDMG = mATK - pDEF;
+        this.pDMG = pATK - mDEF;
+        jProgressBar1.setToolTipText("HP = "+ m.player[1]);
+        jProgressBar2.setToolTipText("HP = "+ eHP);
+        jProgressBar1.setMaximum(m.health[m.player[0] - 1]);
+        jProgressBar2.setMaximum(m.monster[idM][0]);
+
+        jProgressBar1.setValue(m.player[1]);
+        jProgressBar2.setValue(eHP);
+    }
+
+    public void setDMGTxt() {
+        if(pDMG<=0){
+            jLabel4.setText("Hit -0");
+        }else{
+            jLabel4.setText("Hit -"+String.valueOf(pDMG));
+        }
+        if(mDMG<=0){
+            jLabel3.setText("Hit -0");
+        }else{
+            jLabel3.setText("Hit -"+String.valueOf(mDMG));
+        }
+        
+        
+        jLabel3.setVisible(true);
+        jLabel4.setVisible(true);
     }
 
     /**
@@ -36,6 +107,8 @@ public class Fight extends javax.swing.JFrame {
         jProgressBar2 = new javax.swing.JProgressBar();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +142,7 @@ public class Fight extends javax.swing.JFrame {
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
         );
 
+        jProgressBar1.setToolTipText("");
         jProgressBar1.setValue(90);
 
         jProgressBar2.setValue(90);
@@ -81,6 +155,15 @@ public class Fight extends javax.swing.JFrame {
         });
 
         jButton2.setText("Serang");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("jLabel3");
+
+        jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,21 +176,29 @@ public class Fight extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(97, 97, 97)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jProgressBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -126,9 +217,39 @@ public class Fight extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        new Kota().setVisible(true);
+        k.fgt = 0;
+        
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        if (mDMG >= 0) {
+            m.player[1] -= mDMG;
+        } else {
+            m.player[1] -= 0;
+        }
+
+        if (pDMG >= 0) {
+            eHP -= pDMG;
+        } else {
+            eHP -= 0;
+        }
+        setDMGTxt();
+        if (eHP <= 0) {
+            m.player[2] += m.monster[idM][3];
+            m.levelUP();
+            loot = (int) (Math.random() * 2) + 1;
+            m.iInventory[idM + 1] += loot;
+            JOptionPane.showMessageDialog(null, "Monster Berhasil Dibunuh", "Selamat", JOptionPane.INFORMATION_MESSAGE);
+            lk.qpop();
+            System.out.println(lk.head);
+        } else if (m.player[1] <= 0) {
+            m.player[1] = 1;
+            JOptionPane.showMessageDialog(null, "Kamu Kalah T_T", "Oh No!!", JOptionPane.INFORMATION_MESSAGE);
+        }
+        setMonster();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,6 +291,8 @@ public class Fight extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBar1;
