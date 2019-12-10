@@ -5,6 +5,10 @@
  */
 package dungeonquest;
 
+import java.awt.Image;
+import java.util.Random;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +23,7 @@ public class Fight extends javax.swing.JFrame {
     Main m = new Main();
     Kota k = new Kota();
     LinkedList lk = new LinkedList();
-    
+
     public static int idM;
     int eHP;
     int pATK;
@@ -29,32 +33,33 @@ public class Fight extends javax.swing.JFrame {
     int mDMG;
     int pDMG;
     int loot;
+    int hit;
+    int serang = 1;
 
     public Fight() {
         initComponents();
         getMonster();
         //idM=m.var[2];
         //this.eHP = m.monster[idM][0];
-        jLabel3.setVisible(false);
-        jLabel4.setVisible(false);
+        setBgIMG();
         setMonster();
         this.setLocationRelativeTo(null);
     }
-    
-    public void getMonster(){
-        lk.push(new LinkedListNode(m.monster[m.var[2]][0],m.var[2]));
+
+    public void getMonster() {
+        lk.push(new LinkedListNode(m.monster[m.var[2]][0], m.var[2]));
         this.idM = lk.head.idx;
         this.eHP = lk.head.HP;
         System.out.println(lk.head.idx);
     }
-    
-    public void delAllMonster(){
-        while(lk.head != null){
+
+    public void delAllMonster() {
+        while (lk.head != null) {
             lk.qpop();
         }
         lk.qpop();
     }
-    
+
     public void setMonster() {
         System.out.println(idM);
         System.out.println(m.monsterName[idM]);
@@ -64,30 +69,38 @@ public class Fight extends javax.swing.JFrame {
         this.mDEF = m.monster[idM][2];
         this.mDMG = mATK - pDEF;
         this.pDMG = pATK - mDEF;
-        jProgressBar1.setToolTipText("HP = "+ m.player[1]);
-        jProgressBar2.setToolTipText("HP = "+ eHP);
+        jProgressBar1.setToolTipText("HP = " + m.player[1]);
+        jProgressBar2.setToolTipText("HP = " + eHP);
         jProgressBar1.setMaximum(m.health[m.player[0] - 1]);
         jProgressBar2.setMaximum(m.monster[idM][0]);
 
         jProgressBar1.setValue(m.player[1]);
         jProgressBar2.setValue(eHP);
+        if (serang == 0) {
+            jButton2.setEnabled(false);
+        } else {
+            jButton2.setEnabled(true);
+        }
     }
 
-    public void setDMGTxt() {
-        if(pDMG<=0){
-            jLabel4.setText("Hit -0");
-        }else{
-            jLabel4.setText("Hit -"+String.valueOf(pDMG));
+    public void setBgIMG() {
+        jLabel4.setText(m.monsterName[m.var[2]]);
+        if (idM == 0) {
+            jLabel5.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Slime.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT)));
+            jLabel2.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Floor\\Floor1.jpg").getImage().getScaledInstance(718, 350, Image.SCALE_DEFAULT)));
+        } else if (idM == 1) {
+            jLabel5.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Orc.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT)));
+            jLabel2.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Floor\\Floor2.jpg").getImage().getScaledInstance(718, 350, Image.SCALE_DEFAULT)));
+        } else if (idM == 2) {
+            jLabel5.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Werewolf.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT)));
+            jLabel2.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Floor\\Floor3.png").getImage().getScaledInstance(718, 350, Image.SCALE_DEFAULT)));
+        } else if (idM == 3) {
+            jLabel5.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Snake.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT)));
+            jLabel2.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Floor\\Floor4.jpg").getImage().getScaledInstance(718, 350, Image.SCALE_DEFAULT)));
+        } else if (idM == 4) {
+            jLabel5.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Minotaur.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT)));
+            jLabel2.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Floor\\Floor5.png").getImage().getScaledInstance(718, 350, Image.SCALE_DEFAULT)));
         }
-        if(mDMG<=0){
-            jLabel3.setText("Hit -0");
-        }else{
-            jLabel3.setText("Hit -"+String.valueOf(mDMG));
-        }
-        
-        
-        jLabel3.setVisible(true);
-        jLabel4.setVisible(true);
     }
 
     /**
@@ -99,60 +112,37 @@ public class Fight extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBar2 = new javax.swing.JProgressBar();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(0, 0, 204));
-
-        jLabel1.setText("jLabel1");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-        );
-
-        jPanel2.setBackground(new java.awt.Color(0, 0, 204));
-
-        jLabel2.setText("jLabel2");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-        );
+        setMaximumSize(new java.awt.Dimension(718, 392));
+        setMinimumSize(new java.awt.Dimension(718, 392));
+        getContentPane().setLayout(null);
 
         jProgressBar1.setToolTipText("");
         jProgressBar1.setValue(90);
+        getContentPane().add(jProgressBar1);
+        jProgressBar1.setBounds(10, 50, 146, 14);
 
         jProgressBar2.setValue(90);
+        getContentPane().add(jProgressBar2);
+        jProgressBar2.setBounds(546, 50, 146, 14);
 
-        jButton1.setText("Kabur");
+        jButton1.setText("Kembali");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(560, 310, 120, 23);
 
         jButton2.setText("Serang");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -160,89 +150,100 @@ public class Fight extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(300, 310, 120, 23);
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("Player");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(10, 30, 60, 14);
 
         jLabel4.setText("jLabel4");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(97, 97, 97)
-                        .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jProgressBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap())
-        );
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(546, 30, 100, 14);
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(290, 140, 127, 106);
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(2, 75, 700, 209);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        serang = 1;
         k.fgt = 0;
-        
+        k.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        if (mDMG >= 0) {
-            m.player[1] -= mDMG;
-        } else {
-            m.player[1] -= 0;
+        double chance = 1;
+        ImageIcon icon = new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Slime.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT));
+        if (idM == 0) {
+            chance = 0.90;
+            icon = new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Slime.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT));
+        } else if (idM == 1) {
+            chance = 0.80;
+            icon = new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Orc.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT));
+        } else if (idM == 2) {
+            chance = 0.70;
+            icon = new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Werewolf.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT));
+        } else if (idM == 3) {
+            chance = 0.60;
+            icon = new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Snake.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT));
+        } else if (idM == 4) {
+            chance = 0.50;
+            icon = new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Minotaur.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT));
         }
 
-        if (pDMG >= 0) {
-            eHP -= pDMG;
+        if (new Random().nextDouble() <= chance) {
+            if (pDMG >= 0) {
+                eHP -= pDMG;
+            } else {
+                eHP -= 0;
+                pDMG = 0;
+            }
+
+            JOptionPane.showMessageDialog(null,
+                    new JLabel("Attack Berhasil \n" + "DMG: " + pDMG, icon, JLabel.CENTER),
+                    "Berhasil",
+                    JOptionPane.PLAIN_MESSAGE);
         } else {
-            eHP -= 0;
+            if (mDMG >= 0) {
+                m.player[1] -= mDMG;
+            } else {
+                m.player[1] -= 0;
+                mDMG = 0;
+            }
+            JOptionPane.showMessageDialog(null, new JLabel("Attack Gagal \n" + "Terkena: " + mDMG, icon, JLabel.CENTER), "Gagal", JOptionPane.PLAIN_MESSAGE);
         }
-        setDMGTxt();
+
         if (eHP <= 0) {
             m.player[2] += m.monster[idM][3];
             m.levelUP();
-            loot = (int) (Math.random() * 2) + 1;
-            m.iInventory[idM + 1] += loot;
             JOptionPane.showMessageDialog(null, "Monster Berhasil Dibunuh", "Selamat", JOptionPane.INFORMATION_MESSAGE);
             lk.qpop();
+            serang = 0;
+            if (idM <= 2) {
+                loot = (int) (Math.random() * 2) + 1;
+                m.iInventory[idM + 1] += loot;
+            } else if (idM == 4) {
+                if (m.var[3] == 0) {
+                    m.var[3] = 1;
+                    k.fgt = 0;
+                    m.newGame = 0;
+                    m.endGame = 1;
+                    dialogFrm d = new dialogFrm();
+                    d.setVisible(true);
+                    this.dispose();
+                }
+            } else {
+                m.player[7] += 60;
+            }
+            if (m.var[2] < 4) {
+                if (m.var[2] == m.var[1]) {
+                    m.var[1] += 1;
+                }
+            }
             System.out.println(lk.head);
         } else if (m.player[1] <= 0) {
             m.player[1] = 1;
@@ -289,12 +290,10 @@ public class Fight extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
     // End of variables declaration//GEN-END:variables

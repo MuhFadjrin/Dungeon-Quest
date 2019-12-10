@@ -30,16 +30,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="491" max="32767" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="73" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblDialog" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="426" max="32767" attributes="0"/>
+                      <Component id="lblDialog" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="jPanel1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -49,12 +47,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="lblDialog" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -72,22 +70,22 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="....."/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="} catch (Exception ex) {&#xa;            Logger.getLogger(dialogFrm.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="lblDialog.setText(dialog[1]);"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try {&#xa;            // TODO add your handling code here:&#xa;            String data = readFileAsString(&quot;E:\\dialogtes.txt&quot;);&#xa;            String[] dialog = data.split(&quot;\\|&quot;);"/>
-      </AuxValues>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel1" alignment="0" pref="138" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="jLabel1" min="-2" pref="130" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel2" min="-2" pref="131" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
               <Component id="jLabel1" alignment="0" pref="123" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
@@ -105,9 +103,8 @@
               <Dimension value="[10, 10]"/>
             </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jLabel1.setIcon(new ImageIcon(&quot;E:\\tes.jpg&quot;));"/>
-          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
         </Component>
       </SubComponents>
     </Container>

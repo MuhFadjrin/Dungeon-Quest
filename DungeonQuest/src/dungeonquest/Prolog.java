@@ -5,21 +5,82 @@
  */
 package dungeonquest;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Hamba Allah
  */
 public class Prolog extends javax.swing.JFrame {
-
+    Main m = new Main();
+    Kota k = new Kota();
     /**
      * Creates new form Prolog
      */
     int i = 1;
+
     public Prolog() {
         initComponents();
+        pilih();
         this.setLocationRelativeTo(null);
     }
-
+    
+    public void pilih(){
+        System.out.println(m.newGame);
+        if(m.newGame==1){
+            prologg();
+        }else if(m.endGame==1){
+            endP();
+        }
+    }
+    
+    public void endP(){
+        if(i==1){
+            jLabel1.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Floor\\kota.jpeg").getImage().getScaledInstance(519, 391, Image.SCALE_DEFAULT)));
+        }else{
+            k.setVisible(true);
+            this.dispose();
+        }
+    }
+    
+    public void prologg(){
+        if(i==1){
+            jLabel1.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Floor\\Book.png").getImage().getScaledInstance(519, 391, Image.SCALE_DEFAULT)));
+        }else if(i==2){
+            jLabel1.setIcon(null);
+            jLabel1.setText("<html>Ini adalah kisah dari dunia yang bernama Geabrande.<br><br>"
+                    + "Sebuah dunia dimana pedang sihir merupakan hal yang biasa.<br><br>"
+                    + "Dunia ini dihuni oleh banyak ras seperti manusia, dwarf, elf dan banyak monster lainnya.</html>");
+        }else if(i==3){
+            jLabel1.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Floor\\kota.jpeg").getImage().getScaledInstance(519, 391, Image.SCALE_DEFAULT)));
+        }else if(i==4){
+            jLabel1.setIcon(null);
+            jLabel1.setText("<html>10 tahun yang lalu, Raja iblis menciptakan sebuah Dungeon di Geabrande.<br>"
+                    + "Dungeon ini selalu mengeluarkan monster & menyerang manusia di sekitarnya.<br>"
+                    + "Dia berkata akan membinasakan umat manusia secara perlahan untuk mendapatkan energi negatif, rasa putus asa & ketakutan untuk menguasai dunia.<br>"
+                    + "Raja iblis saat ini sedang menunggu di lantai 100 sampai waktunya untuk kembali dengan energi yg cukup.</html>");
+        }else if(i==5){
+           jLabel1.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Floor\\Devil.png").getImage().getScaledInstance(519, 391, Image.SCALE_DEFAULT))); 
+        }else if(i==6){
+            jLabel1.setIcon(null);
+            jLabel1.setText("<html>Sudah banyak manusia yang berlatih dan mencoba untuk pergi ke lantai 100 untuk mengalahkan Raja Iblis<br>"
+                    + "namun tidak ada satupun orang yang berhasil melewati lantai 50.");                
+        }else if(i==7){
+           jLabel1.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Floor\\Tower1.png").getImage().getScaledInstance(519, 391, Image.SCALE_DEFAULT)));             
+        }else if(i==8){
+                jLabel1.setIcon(null);
+            jLabel1.setText("<html>Ditengah keputusasaan, Raja Geabrande mencoba sebuah ritual kuno untuk pemanggilan Pahlawan dari dunia lain.<br>"
+                    + "Pemanggilan ini pun sukses dan berhasil memanggil seseorang yang mereka percayai sebagai seorang 'Pahlawan'.");        
+        }else if(i==9){
+           jLabel1.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Floor\\Hexagram.png").getImage().getScaledInstance(519, 391, Image.SCALE_DEFAULT)));                     
+        }else{
+            i=1;
+            dialogFrm d = new dialogFrm();
+            d.setVisible(true);
+            this.dispose();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +104,15 @@ public class Prolog extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(504, 300));
+        jPanel1.setMinimumSize(new java.awt.Dimension(504, 300));
+
+        jLabel1.setFont(new java.awt.Font("Papyrus", 3, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("...");
+        jLabel1.setMaximumSize(new java.awt.Dimension(504, 300));
+        jLabel1.setMinimumSize(new java.awt.Dimension(504, 300));
+        jLabel1.setPreferredSize(new java.awt.Dimension(504, 300));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -53,7 +122,7 @@ public class Prolog extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -61,14 +130,14 @@ public class Prolog extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 441, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -78,14 +147,9 @@ public class Prolog extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        i +=1;
+        pilih();
         
-        if(i <= 4){
-            jLabel1.setText("Gambar Prolog "+i);
-            i++;
-        }else{
-            this.dispose();
-            new dialogFrm().setVisible(true);
-        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

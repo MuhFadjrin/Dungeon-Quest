@@ -69,7 +69,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
@@ -78,6 +77,9 @@
           <Image iconType="2" name="E:\asset\Tombol\continue.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton2MouseClicked"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="lanjut();"/>
       </AuxValues>

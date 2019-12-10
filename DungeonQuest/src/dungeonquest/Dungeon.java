@@ -5,6 +5,9 @@
  */
 package dungeonquest;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Hamba Allah
@@ -24,6 +27,17 @@ public class Dungeon extends javax.swing.JFrame {
         
     }
     public void cekFloor(){
+        if(m.var[2]==0){
+            jLabel3.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Slime.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT)));
+        }else if(m.var[2]==1){
+            jLabel3.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Orc.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT)));
+        }else if(m.var[2]==2){
+            jLabel3.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Werewolf.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT)));
+        }else if(m.var[2]==3){
+            jLabel3.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Snake.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT)));
+        }else if(m.var[2]==4){
+            jLabel3.setIcon(new ImageIcon(new ImageIcon("E:\\asset\\Monster\\Minotaur.png").getImage().getScaledInstance(127, 106, Image.SCALE_DEFAULT)));
+        }
         if(m.var[2]<m.var[1]){
             jButton2.setEnabled(true);
         }else{
@@ -47,7 +61,6 @@ public class Dungeon extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -55,22 +68,10 @@ public class Dungeon extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-
-        jPanel1.setBackground(new java.awt.Color(255, 0, 51));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 102, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 86, Short.MAX_VALUE)
-        );
 
         jButton1.setText("Kembali");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -151,19 +152,19 @@ public class Dungeon extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(108, 108, 108))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1)
-                .addGap(37, 37, 37)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -237,7 +238,7 @@ public class Dungeon extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

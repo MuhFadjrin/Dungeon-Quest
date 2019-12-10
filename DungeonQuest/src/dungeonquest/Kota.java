@@ -8,8 +8,7 @@ package dungeonquest;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import javax.swing.*;
-import java.awt.*;
+
 
 /**
  *
@@ -39,10 +38,13 @@ public class Kota extends javax.swing.JFrame {
         int i = m.player[0];
         jLabel8.setText(String.valueOf(m.player[1]) + '/' + String.valueOf(m.health[i - 1]));
         jLabel9.setText(String.valueOf(i));
-        jLabel10.setText(String.valueOf(m.player[2]) + '/' + String.valueOf(m.exp[0]));
+        jLabel10.setText(String.valueOf(m.player[2]) + '/' + String.valueOf(m.exp[i-1]));
         jLabel11.setText(String.valueOf(m.player[7]));
         jLabel12.setText(String.valueOf(m.player[3] + m.weapon[m.player[5]][0]));
         jLabel13.setText(String.valueOf(m.player[4] + m.armor[m.player[6]][1]));
+        if(fgt==1){
+            this.dispose();
+        }
     }
 
     /**
@@ -80,7 +82,6 @@ public class Kota extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
-        setMaximumSize(new java.awt.Dimension(627, 410));
         setMinimumSize(new java.awt.Dimension(627, 410));
         getContentPane().setLayout(null);
 
@@ -105,6 +106,11 @@ public class Kota extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(51, 51, 51));
         jButton4.setForeground(new java.awt.Color(51, 51, 51));
         jButton4.setIcon(new javax.swing.ImageIcon("E:\\asset\\Tombol\\SaveGame.png")); // NOI18N
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -316,6 +322,11 @@ public class Kota extends javax.swing.JFrame {
             shp = 1;
         }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        koneksi kon = new koneksi();
+        kon.saveGame();
+    }//GEN-LAST:event_jButton4MouseClicked
 
     Runnable setTXT = new Runnable() {
         @Override

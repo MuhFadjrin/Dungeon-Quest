@@ -10,17 +10,20 @@ package dungeonquest;
  */
 
 public class MenuAwal extends javax.swing.JFrame {
+    Main m = new Main();
     
+    koneksi k = new koneksi();
     /**
      * Creates new form MenuAwal
      */
     public MenuAwal() {
         initComponents();
+        k.cek();
+        lanjut();
         this.setLocationRelativeTo(null);
     }
     
     private void lanjut(){
-        Main m = new Main();
         if(m.var[0]==0){
             jButton2.setEnabled(false);
         }else{
@@ -53,14 +56,14 @@ public class MenuAwal extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         lanjut();
         jButton2.setIcon(new javax.swing.ImageIcon("E:\\asset\\Tombol\\continue.png")); // NOI18N
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon("E:\\asset\\Tombol\\exitgame.png")); // NOI18N
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -100,17 +103,23 @@ public class MenuAwal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        new Prolog().setVisible(true);
+        m.newGame();
+        Prolog p = new Prolog();
+        p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_jButton3MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        k.continueGame();
+        Kota kota = new Kota();
+        kota.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
